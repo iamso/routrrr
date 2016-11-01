@@ -1,0 +1,17 @@
+{
+  "name": "routrrr",
+  "repository": "iamso/routrrr",
+  "description": "simple routing for the browser",
+  "version": "0.1.0",
+  "keywords": [
+    "route",
+    "routing"
+  ],
+  "scripts": [
+    "dist/routrrr.js",
+    "dist/routrrr.min.js",
+    "dist/routrrr.next.js",
+    "dist/routrrr.next.min.js"
+  ],
+  "license": "MIT"
+}
