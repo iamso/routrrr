@@ -73,11 +73,13 @@ routrrr
   .load();
 
 // example ajax link setup
-document.querySelectorAll('[data-ajax]').addEventListener('click', function(e) {
-  routrrr.redirect(this.href);
-  e.preventDefault();
-  return false;
-}, false);
+document.querySelectorAll('[data-ajax]').forEach(item => {
+  item.addEventListener('click', function(e) {
+    routrrr.redirect(this.href);
+    e.preventDefault();
+    return false;
+  }, false);
+});
 
 
 ```
