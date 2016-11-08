@@ -146,6 +146,16 @@ export default class Routrrr {
   }
 
   /**
+   * initialize Routrrr
+   * @return {Object} - the Routrrr instance
+   */
+  init() {
+
+    return this.load();
+
+  }
+
+  /**
    * set the default route callback
    * @param  {Function} fn - the callback function
    * @return {Object}     - the Routrrr instance
