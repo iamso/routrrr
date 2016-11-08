@@ -70,7 +70,7 @@ routrrr
     console.log('fallback route', req);
   })
   // initiate first load
-  .load();
+  .init();
 
 // example ajax link setup
 document.querySelectorAll('[data-ajax]').forEach(item => {
