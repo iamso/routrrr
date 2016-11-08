@@ -1,5 +1,5 @@
 /*!
- * routrrr - version 0.1.0
+ * routrrr - version 0.2.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
@@ -136,6 +136,15 @@ export default class Routrrr {
     this.currentHash = location.hash;
 
     return this;
+  }
+
+  /**
+   * initialize Routrrr
+   * @return {Object} - the Routrrr instance
+   */
+  init() {
+
+    return this.load();
   }
 
   /**
