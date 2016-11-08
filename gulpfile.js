@@ -58,7 +58,6 @@ gulp.task('js', ['js:next'], () => {
     .pipe(babel({
       presets: ['es2015', 'stage-0'],
       plugins: [
-        "transform-function-bind",
         "add-module-exports",
         "transform-es2015-modules-umd",
       ],
@@ -79,9 +78,7 @@ gulp.task('js:next', () => {
   return gulp.src([src.jsMain, src.jsHistory])
     .pipe(concat('routrrr.js'))
     .pipe(babel({
-      plugins: [
-        "transform-function-bind",
-      ],
+      presets: ['stage-0'],
     }))
     .pipe(rename('routrrr.next.js'))
     .pipe(banner(comment))
