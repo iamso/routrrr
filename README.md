@@ -2,6 +2,21 @@ routrrr
 =======
 simple routing for the browser
 
+Install
+-------
+
+### With Bower
+
+```bash
+bower install routrrr
+```
+
+### With NPM
+
+```bash
+npm install routrrr
+```
+
 Example Setup
 -------------
 
