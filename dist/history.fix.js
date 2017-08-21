@@ -3,7 +3,7 @@
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
- * Copyright (c) 2016 Steve Ottoz
+ * Copyright (c) 2017 Steve Ottoz
  */
 'use strict';
 
