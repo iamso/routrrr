@@ -3,38 +3,6 @@
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
- * Copyright (c) 2017 Steve Ottoz
+ * Copyright (c) 2020 Steve Ottoz
  */
-'use strict';
-
-/**
- * History API fix
- */
-;(function (history) {
-  'use strict';
-
-  if (!history && !history.pushState) {
-    return false;
-  }
-  var pushState = history.pushState;
-  var replaceState = history.replaceState;
-
-  history.pushState = function (state, title) {
-    var returnValue = pushState.apply(history, arguments);
-    title && (document.title = title);
-    triggerEvent('push', state);
-    return returnValue;
-  };
-  history.replaceState = function (state, title) {
-    var returnValue = replaceState.apply(history, arguments);
-    title && (document.title = title);
-    triggerEvent('replace', state);
-    return returnValue;
-  };
-
-  function triggerEvent(type, state) {
-    var event = document.createEvent('CustomEvent');
-    event.initCustomEvent(type + 'state', true, true, state);
-    window.dispatchEvent(event);
-  }
-})(window.history);
+!function(t){if(!t&&!t.pushState)return!1;var e=t.pushState,n=t.replaceState;function a(t,e){var n=document.createEvent("CustomEvent");n.initCustomEvent(t+"state",!0,!0,e),window.dispatchEvent(n)}t.pushState=function(n,u){var r=e.apply(t,arguments);return u&&(document.title=u),a("push",n),r},t.replaceState=function(e,u){var r=n.apply(t,arguments);return u&&(document.title=u),a("replace",e),r}}(window.history);
