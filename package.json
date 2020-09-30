@@ -26,7 +26,8 @@
     "dev": "rollup -c -w"
   },
   "files": [
-    "dist"
+    "dist",
+    "!.DS_Store"
   ],
   "devDependencies": {
     "@babel/core": "^7.11.6",
