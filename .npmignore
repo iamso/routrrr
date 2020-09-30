@@ -1,5 +1,4 @@
 .DS_Store
-dist/.DS_Store
 demo
 rollup.config.js
 src
