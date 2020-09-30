@@ -1,6 +1,6 @@
 {
   "name": "routrrr",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "simple routing for the browser",
   "main": "dist/routrrr.cjs.js",
   "module": "dist/routrrr.esm.js",

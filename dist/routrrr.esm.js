@@ -1,5 +1,5 @@
 /*!
- * routrrr - version 0.3.1
+ * routrrr - version 0.3.2
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
