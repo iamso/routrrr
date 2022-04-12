@@ -67,9 +67,6 @@ export default [
           modules: false
           }]
         ],
-        plugins: [
-          "@babel/plugin-proposal-function-bind"
-        ],
 				exclude: ['node_modules/**']
       }),
       cleanup(),
@@ -107,9 +104,6 @@ export default [
             },
           modules: false
           }]
-        ],
-        plugins: [
-          "@babel/plugin-proposal-function-bind"
         ],
         exclude: ['node_modules/**']
 			}),

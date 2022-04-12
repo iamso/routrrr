@@ -22,7 +22,7 @@ export default class Routrrr {
     this.hashPrefix = hashPrefix;
 
     ['popstate', 'pushstate', 'replacestate'].forEach(event => {
-      window.addEventListener(event, (e) => {
+      window.addEventListener(event, e => {
         if (!this.useHash && this.currentPath === e.target.location.pathname && this.currentPath !== e.target.location.hash && e.target.location.hash) {
           e.preventDefault();
           return false;
@@ -92,12 +92,16 @@ export default class Routrrr {
    * @param  {Object} [state] - history state object
    * @return {Object}         - the Routrrr instance
    */
-  load(state) {
+  async load(state) {
 
-    const pathname = this.useHash ? location.hash.replace(hashPrefix, '') : (state && state.url ? state.url : window.location.pathname).split('?')[0];
+    const pathname = this.useHash ? location.hash.replace(hashPrefix, '') : (state && state.url ? state.url : window.location.pathname).split('?')[0];
     const params = {};
-    let req = Object.assign({}, location, {params: params, pathname: pathname, query: getQueryParams()});
-    let pass = true;
+    let req = {
+      ...location,
+      params,
+      pathname,
+      query: getQueryParams()
+    };
     let route;
     let matches;
 
@@ -116,27 +120,34 @@ export default class Routrrr {
         params[route.keys[i].name] = match;
       });
 
-      Object.assign(req, {route: route.path, params: params});
-      this::callMiddleware(req)
-        .then(() => {
-          if (route.mw) {
-            route.mw.apply(this, [req]).then(() => {
-              route.fn.apply(this, [req]);
-            }).catch(e => {});
-          }
-          else {
-            route.fn.apply(this, [req]);
-          }
-        })
-        .catch(e => {});
+      req = {
+        ...req,
+        route: route.path,
+        params,
+      };
+
+      try {
+        await callMiddleware.call(this, req);
+
+        if (route.mw) {
+          await route.mw.call(this, req).catch(e => {});
+        }
+        else {
+          route.fn.call(this, req);
+        }
+      }
+      catch(e) {}
     }
     else {
-      this::callMiddleware(req)
-        .then(() => {
-          Object.assign(req, {route: null});
-          this.default && this.default.apply(this, [req]);
-        })
-        .catch(e => {});
+      try {
+        await callMiddleware.call(this, req);
+        req = {
+          ...req,
+          route: null
+        };
+        this.default && this.default.call(this, req);
+      }
+      catch(e) {}
     }
     this.currentPath = pathname;
     this.currentHash = location.hash;
@@ -182,7 +193,7 @@ function callMiddleware(req) {
     const promises = [];
 
     this.mw.forEach(fn => {
-      promises.push(fn.apply(this, [req]));
+      promises.push(fn.call(this, req));
     });
 
     Promise.all(promises)
