@@ -88,6 +88,28 @@ export default class Routrrr {
   }
 
   /**
+   * push another path
+   * @param  {String}  path      - the path as a string
+   * @return {Object}            - the Routrrr instance
+   */
+  push(path) {
+
+    return this.redirect(path, false);
+
+  }
+
+  /**
+   * replace path with nother path
+   * @param  {String}  path      - the path as a string
+   * @return {Object}            - the Routrrr instance
+   */
+  replace(path) {
+
+    return this.redirect(path, true);
+
+  }
+
+  /**
    * load the appropriate route
    * @param  {Object} [state] - history state object
    * @return {Object}         - the Routrrr instance
