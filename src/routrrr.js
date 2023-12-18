@@ -266,18 +266,18 @@ function pathToRegex(path, keys, sensitive, strict) {
  * @return {Object}               - object containing the parameters
  */
 function getQueryParams(queryString) {
+  const params = {};
 
-  if (!(queryString = location.search.replace('?',''))) {
-    return;
+  if (!(queryString = location.search.replace('?', ''))) {
+    return params;
   }
 
   const queryParams = queryString.split('&');
-  const params = {};
   const regex = /\[\]$/;
 
-  for (let param of queryParams) {
+  for (const param of queryParams) {
     let [name, value] = decodeURIComponent(param).split('=');
-    value = value ? value.split('+').join(' ') : '';
+    value = value !== undefined ? value : true;
     if (regex.test(name)) {
       name = name.replace(regex, '');
       if (!Array.isArray(params[name])) {
