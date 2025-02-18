@@ -24,8 +24,9 @@
   };
 
   function triggerEvent(type, state) {
-    const event = document.createEvent('CustomEvent');
-    event.initCustomEvent(type + 'state', true, true, state);
+    const event = new CustomEvent(type + 'state', {
+      detail: state
+    });
     window.dispatchEvent(event);
   }
 })(window.history);
